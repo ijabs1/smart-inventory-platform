@@ -17,6 +17,16 @@ pipeline {
             }
         }
 
+        stage('Verify Tools') {
+            steps {
+                sh '''
+                    docker --version
+                    aws --version
+                    kubectl version --client
+                '''
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 dir('services/inventory-service') {
